@@ -10,6 +10,14 @@ int main()
 {
     Conjunto conj1, conj2, conj3;
     typeinfo elDato;
+    if (conj1 & 100)
+    {
+        cout << "Encontrado;";
+    }
+    else
+    {
+        cout << "No encontrado";
+    }
     cout << "Teclea la cantidad de datos que va a tener el conjunto";
     cin >> cantidad;
     for (int i = 0; i < 13; i++)
@@ -18,18 +26,18 @@ int main()
         cout << "Teclea un valor: ";
         cin >> elDato;
 
-        if (conj1.AddElem(elDato))
+        if (conj1 + elDato)
             cout << "Dato insertado" << endl;
         else
             cout << "Error" << endl;
     }
     cout << "Hello Wordl";
 
-    if (conj1.Member(elDato))
-        cout << "Existe";
+    // if (conj1.Member(elDato))
+    //     cout << "Existe";
 
-    else
-        cout << "No exit¿ste";
+    // else
+    //     cout << "No exit¿ste";
 
     if (conj1.RmvElem(elDato))
         cout << "Removido";

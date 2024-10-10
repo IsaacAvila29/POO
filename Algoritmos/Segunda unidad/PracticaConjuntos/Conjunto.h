@@ -11,15 +11,11 @@ private:
 
 public:
     Conjunto() { card = 0; };
-    bool Member(typeinfo); // -
-    bool AddElem(typeinfo); // -
+    friend bool operator&(Conjunto, typeinfo);
+    friend bool operator+(Conjunto, typeinfo);
     bool RmvElem(typeinfo);
-    // bool Copy(Conjunto &);
-    // bool Equal(Conjunto);
     void Print();
-    // void Intersect(Conjunto, Conjunto &);
-    bool Union(Conjunto, Conjunto &);
-    // void RmvAll();
+    bool Union(Conjunto, Conjunto &); // Union
 };
 
 #endif // CONJUNTO_H

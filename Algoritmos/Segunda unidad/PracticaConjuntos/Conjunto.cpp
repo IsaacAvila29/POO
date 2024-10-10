@@ -1,11 +1,11 @@
 #include "Conjunto.h"
 #include <iostream>
 using namespace std;
-inline bool Conjunto::Member(typeinfo dato)
+inline bool operator&(Conjunto Conj, typeinfo dato) // Este antes era member
 {
-    for (int i = 0; i < card; i++)
+    for (int i = 0; i < Conj.card; i++)
     {
-        if (elementos[i] == dato)
+        if (Conj.elementos[i] == dato)
         {
             return true;
         }
@@ -13,20 +13,13 @@ inline bool Conjunto::Member(typeinfo dato)
     return false;
 }
 
-// inline bool Conjunto::AddElem(typeinfo dato)
-// {
-//     if ((card == maxCard) || Member(dato))
-//         return false;
-//     elementos[card++] = dato; // aqui aumenta en uno de una vez la variable de card
-// }
-
-inline bool Conjunto::AddElem(typeinfo dato)
+inline bool operator+(Conjunto Conj, typeinfo dato)
 {
-    if ((card == maxCard) || Member(dato))
+    if ((Conj.card == maxCard) || (Conj & dato))
         return false;
 
-    elementos[card] = dato; // Asigna el dato al array
-    card++;                 // Incrementa card después de la asignación
+    Conj.elementos[Conj.card] = dato; // Asigna el dato al array
+    // card++;                           // Incrementa card después de la asignación
 
     return true; // Asegúrate de devolver true si se añade el elemento
 }
