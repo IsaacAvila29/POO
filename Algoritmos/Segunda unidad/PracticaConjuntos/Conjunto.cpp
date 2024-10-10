@@ -13,7 +13,7 @@ inline bool operator&(Conjunto Conj, typeinfo dato) // Este antes era member
     return false;
 }
 
-inline bool operator+(Conjunto Conj, typeinfo dato)
+inline bool operator+(Conjunto &Conj, typeinfo dato)
 {
     if ((Conj.card == maxCard) || (Conj & dato))
         return false;
