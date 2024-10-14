@@ -13,25 +13,25 @@ inline bool operator&(Conjunto Conj, typeinfo dato) // Este antes era member
     return false;
 }
 
-inline bool operator+(Conjunto &Conj, typeinfo dato)
+inline bool operator+(Conjunto &Conj, typeinfo dato) // AddElem
 {
-    if ((Conj.card == maxCard) || (Conj & dato))
+    if ((Conj.card == maxCard) || (Conj & dato)) // Usar la sobrecarga del operador &
         return false;
 
     Conj.elementos[Conj.card] = dato; // Asigna el dato al array
-    // card++;                           // Incrementa card después de la asignación
+    Conj.card++;                      // Incrementa card después de la asignación
 
     return true; // Asegúrate de devolver true si se añade el elemento
 }
 
-inline bool Conjunto::RmvElem(typeinfo dato)
+inline bool operator-(Conjunto &Conj, typeinfo dato) // Rmv Element
 {
-    for (int i = 0; i < card; i++)
+    for (int i = 0; i < Conj.card; i++)
     {
-        if (elementos[i] == dato)
+        if (Conj.elementos[i] == dato)
         {
-            elementos[i] = elementos[card - 1];
-            card--;
+            Conj.elementos[i] = Conj.elementos[Conj.card - 1];
+            Conj.card--;
             return true;
         }
     }
@@ -40,30 +40,33 @@ inline bool Conjunto::RmvElem(typeinfo dato)
 
 inline void Conjunto::Print()
 {
-    cout << "{  ";
+    cout << "{ ";
 
-    for (int i = 0; i < card - 1; i++)
+    for (int i = 0; i < card; i++) // Imprime todos los elementos
     {
-        std::cout << elementos[i] << ", ";
-
-        if (!card)
-            cout << "} ";
-        else
-            cout << elementos[card] << "} ";
+        cout << elementos[i];
+        if (i < card - 1) // Agrega una coma solo si no es el último elemento
+            cout << ", ";
     }
+    cout << " }" << endl; // Imprime la llave de cierre y el salto de línea
 }
 
-inline bool Conjunto::Union(Conjunto conj2, Conjunto &conj3)
+// Sobrecarga del operador | para unir dos conjuntos
+inline Conjunto operator|(Conjunto &Conj1, Conjunto &Conj2)
 {
-    conj3.card = 0;
-    for (int i = 0; i < card; i++) // se deja que es el objeto implicito
-        conj3.AddElem(elementos[i]);
+    Conjunto conj3; // Conjunto resultante de la unión
 
-    for (int i = 0; i < conj2.card; i++)
+    // Agregar todos los elementos de Conj1
+    for (int i = 0; i < Conj1.card; i++)
     {
-        if (conj3.card == maxCard)
-            return false;
-        else
-            conj3.AddElem(conj2.elementos[i]);
+        conj3 + Conj1.elementos[i]; // Usamos la sobrecarga del operador +
     }
+
+    // Agregar los elementos de Conj2, evitando duplicados
+    for (int i = 0; i < Conj2.card; i++)
+    {
+        conj3 + Conj2.elementos[i]; // Solo agrega si no están ya en conj3
+    }
+
+    return conj3; // Retornamos el conjunto resultante
 }

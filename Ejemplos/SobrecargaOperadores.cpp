@@ -18,9 +18,9 @@ struct complejo
 };
 
 /* Definición del operador + para complejos */
-complejo operator+(complejo a, complejo b)
+complejo operator+(complejo com1, complejo com2)
 {
-    complejo temp = {a.a + b.a, a.b + b.b};
+    complejo temp = {com1.a + com2.a, com1.b + com2.b};
     return temp;
 }
 
@@ -32,12 +32,6 @@ complejo operator++(complejo &c)
 }
 
 /* Definición del operador ++ sufijo para complejos */
-complejo operator++(complejo &c, int)
-{
-    complejo temp = {c.a, c.b};
-    c.a++;
-    return temp;
-}
 
 void Mostrar(complejo c)
 {
@@ -65,8 +59,6 @@ int main()
     Mostrar(z);
     cout << "++z = ";
     Mostrar(++z);
-    cout << "z++ = ";
-    Mostrar(z++);
     cout << "z = ";
     Mostrar(z);
 

@@ -11,11 +11,11 @@ private:
 
 public:
     Conjunto() { card = 0; };
-    friend bool operator&(Conjunto, typeinfo);
-    friend bool operator+(Conjunto, typeinfo);
-    bool RmvElem(typeinfo);
+    friend bool operator&(Conjunto, typeinfo);   // Member
+    friend bool operator+(Conjunto &, typeinfo); // Añadir
+    friend bool operator-(Conjunto &, typeinfo); // Remover
     void Print();
-    bool Union(Conjunto, Conjunto &); // Union
+    friend Conjunto operator|(Conjunto &, Conjunto &); // Operador para realizar la unión de conjuntos
 };
 
 #endif // CONJUNTO_H
