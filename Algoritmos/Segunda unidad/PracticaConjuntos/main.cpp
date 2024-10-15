@@ -6,7 +6,9 @@ using namespace std;
 Conjunto conj1, conj2, conj3; // Declaración de tres conjuntos
 
 void Menu();
-int SubMenu();
+void MensajeGenerico(int codigo);
+string errorGenerico(int codigo);
+
 int main()
 {
     setlocale(LC_ALL, "");
@@ -57,22 +59,6 @@ int main()
     conj3.Print();
     Menu();
 
-    // Prueba de eliminación de un elemento del conjunto 1
-    // cout << "Teclea un valor a eliminar de conjunto 1: ";
-    // cin >> elDato;
-
-    // if (conj1 - elDato)
-    // {
-    //     cout << "Dato " << elDato << " eliminado de conjunto 1." << endl;
-    // }
-    // else
-    // {
-    //     cout << "Error: Dato no encontrado en conjunto 1." << endl;
-    // }
-
-    // // Imprimir el conjunto actualizado
-    // cout << "Conjunto 1 actualizado: ";
-    // conj1.Print();
     return 0;
 }
 
@@ -87,6 +73,7 @@ void Menu()
     cout << "Presione 2 para eliminar un elemento a un conjunto " << endl;
     cout << "Presione 3 para unir los conjunots 1 y 2 " << endl;
     cout << "Presione 4 para verificar si un numero esta dentro de un conjunto " << endl;
+    cout << "Presione 5 salir del programa " << endl;
     cout << "*************************************************";
     cout << endl
          << "Seleccione su respuesta:    " << endl;
@@ -101,6 +88,10 @@ void Menu()
 
         cout << "Seleccione el conjunto que desea modificar ";
         cin >> seleccion2;
+        if (seleccion2 > 2 || seleccion2 == 0)
+        {
+            cout << errorGenerico(1);
+        }
 
         while (seleccion2 == 1 || seleccion2 == 2)
         {
@@ -120,10 +111,7 @@ void Menu()
                 cout << "El conjunto 1 ";
                 conj1.Print();
 
-                cout << endl
-                     << "¿Que desea hacer? " << endl
-                     << "Presione 1 para modificar el primer conjunto" << endl
-                     << "Presione 2 para modificar el segundo conjunto, o presione 0 para salir  ";
+                MensajeGenerico(0);
 
                 cin >> seleccion2;
             }
@@ -144,10 +132,7 @@ void Menu()
                 cout << "El conjunto 2 ";
                 conj2.Print();
 
-                cout << endl
-                     << "¿Que desea hacer? " << endl
-                     << "Presione 1 para modificar el primer conjunto" << endl
-                     << "Presione 2 para modificar el segundo conjunto, o presione 0 para salir  ";
+                MensajeGenerico(0);
 
                 cin >> seleccion2;
             }
@@ -159,7 +144,10 @@ void Menu()
 
         cout << "Seleccione el conjunto que desea modificar ";
         cin >> seleccion2;
-
+        if (seleccion2 > 2 || seleccion2 == 0)
+        {
+            cout << errorGenerico(1);
+        }
         while (seleccion2 == 1 || seleccion2 == 2)
         {
             if (seleccion2 == 1)
@@ -180,10 +168,7 @@ void Menu()
                 cout << "El conjunto 1 ";
                 conj1.Print();
 
-                cout << endl
-                     << "¿Que desea hacer? " << endl
-                     << "Presione 1 para modificar el primer conjunto" << endl
-                     << "Presione 2 para modificar el segundo conjunto, o presione 0 para salir  ";
+                MensajeGenerico(0);
 
                 cin >> seleccion2;
             }
@@ -206,10 +191,7 @@ void Menu()
                 cout << "El conjunto 2 ";
                 conj2.Print();
 
-                cout << endl
-                     << "¿Que desea hacer? " << endl
-                     << "Presione 1 para modificar el primer conjunto" << endl
-                     << "Presione 2 para modificar el segundo conjunto, o presione 0 para salir  ";
+                MensajeGenerico(0);
 
                 cin >> seleccion2;
             }
@@ -233,7 +215,11 @@ void Menu()
         cout << "Ha seleccionado verificar si un elemento esta dentro de un conjunto " << endl;
         cout << "Seleccione el conjunto que desea comprobar: ";
         cin >> seleccion2;
-        while (seleccion2 == 1 || seleccion2 == 2)
+        if (seleccion2 > 3 || seleccion2 == 0)
+        {
+            cout << errorGenerico(1);
+        }
+        while (seleccion2 == 1 || seleccion2 == 2 || seleccion2 == 3)
         {
             if (seleccion2 == 1)
             {
@@ -243,49 +229,93 @@ void Menu()
                 typeinfo elDato;
                 cin >> elDato;
                 if (conj1 & elDato)
-
                     cout << endl
                          << "El numero " << elDato << " SI esta en el conjunto 1" << endl;
 
                 else
-
                     cout << endl
                          << "El numero " << elDato << " NO esta en el conjunto 1" << endl;
 
-                cout << endl
-                     << "¿Que desea hacer? " << endl
-                     << "Presione 1 para verificar el primer conjunto" << endl
-                     << "Presione 2 para verificar el segundo conjunto, o presione 0 para salir  ";
+                MensajeGenerico(1);
 
                 cin >> seleccion2;
             }
 
             if (seleccion2 == 2)
             {
-                cout << "Ha seleccionado conjunto 1 " << endl
+                cout << "Ha seleccionado conjunto 2 " << endl
                      << "escriba cual numero desea comprobar: ";
 
                 typeinfo elDato;
                 cin >> elDato;
 
                 if (conj2 & elDato)
-
                     cout << "El numero " << elDato << " SI esta en el conjunto 2";
 
                 else
-
                     cout << "El numero " << elDato << " NO esta en el conjunto 2";
 
-                cout << endl
-                     << "¿Que desea hacer? " << endl
-                     << "Presione 1 para verificar el primer conjunto" << endl
-                     << "Presione 2 para verificar el segundo conjunto, o presione 0 para salir  ";
+                MensajeGenerico(1);
+                cin >> seleccion2;
+            }
+            if (seleccion2 == 3)
+            {
+                cout << "Ha seleccionado conjunto 3 " << endl
+                     << "escriba cual numero desea comprobar: ";
 
+                typeinfo elDato;
+                cin >> elDato;
+
+                if (conj3 & elDato)
+                    cout << "El numero " << elDato << " SI esta en el conjunto union";
+
+                else
+                    cout << "El numero " << elDato << " NO esta en el conjunto union";
+
+                MensajeGenerico(1);
                 cin >> seleccion2;
             }
         }
-
         Menu();
+        break;
+    case 5:
+        cout << "HASTA LUEGO";
+        break;
+    default:
+        cout << errorGenerico(2);
+        Menu();
+        break;
+    }
+}
+
+void MensajeGenerico(int codigo)
+{
+    if (codigo == 0)
+    {
+        cout << endl
+             << "¿Que desea hacer? " << endl
+             << "Presione 1 para trabajar el primer conjunto" << endl
+             << "Presione 2 para trabajar el segundo conjunto, o presione cualquier tecla para volver al menu ";
+    }
+    else if (codigo == 1)
+    {
+        cout << endl
+             << "¿Que desea hacer? " << endl
+             << "Presione 1 para trabajar el primer conjunto" << endl
+             << "Presione 2 para trabajar el segundo conjunto" << endl
+             << "Presione 3 para trabajar con el conjunto union o presione cualquier tecla para volver al menu ";
+    }
+}
+
+string errorGenerico(int codigo)
+{
+    switch (codigo)
+    {
+    case 1:
+        return "ERROR, EL CONJUNTO SELECCIONADO NO ES UN CONJUNTO VALIDO, VOLVIENDO AL MENU";
+        break;
+    case 2:
+        return "ERROR, ESA NO ES UNA SELECCION VALIDA";
         break;
     default:
         break;
