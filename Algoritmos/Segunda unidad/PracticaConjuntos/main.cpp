@@ -1,3 +1,6 @@
+// Isaac Avila Saenz 238925
+// Ashley Paulina Dominguez Ruiz 225751
+
 #include "Conjunto.cpp"
 #include <bits/stdc++.h>
 
