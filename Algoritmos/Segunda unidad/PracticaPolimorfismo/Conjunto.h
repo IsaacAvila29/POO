@@ -14,12 +14,8 @@ public:
     bool Member(typeinfo);
     bool AddElem(typeinfo);
     bool RmvElem(typeinfo);
-    // bool Copy(Conjunto &);
-    // bool Equal(Conjunto);
     void Print();
-    // void Intersect(Conjunto, Conjunto &);
-    bool Union(Conjunto, Conjunto &);
-    // void RmvAll();
+    friend bool Sumar(Conjunto, Conjunto, Conjunto &);
 };
 
 #endif // CONJUNTO_H

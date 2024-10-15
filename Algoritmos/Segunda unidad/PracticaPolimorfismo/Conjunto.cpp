@@ -51,14 +51,14 @@ inline void Conjunto::Print()
     cout << " }" << endl; // Imprime los elementos entre llaves
 }
 
-inline bool Conjunto::Union(Conjunto conj2, Conjunto &conj3)
+inline bool Sumar(Conjunto conj1, Conjunto conj2, Conjunto &conj3)
 {
     conj3.card = 0; // Reinicia el card de conj3 para asegurarte de que esté vacío
 
     // Agrega elementos del conjunto actual (this)
-    for (int i = 0; i < card; i++)
+    for (int i = 0; i < conj1.card; i++)
     {
-        conj3.AddElem(elementos[i]);
+        conj3.AddElem(conj1.elementos[i]);
     }
 
     // Agrega elementos de conj2

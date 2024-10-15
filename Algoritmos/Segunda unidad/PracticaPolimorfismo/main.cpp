@@ -7,6 +7,12 @@ using namespace std;
 
 void mostrarMenu();
 
+bool print(int arreglo[], int tam);
+bool print(char arreglo[], int tam);
+bool Llenar(int arreglo[], int &tam);
+bool Sumar(int *array1, int tam1, int *array2, int tam2, int *array3, int tam3);
+bool Sumar(char *array1, char *array2, char *array3);
+
 int main()
 {
     Conjunto conj1, conj2, conj3; // Declaración de conjuntos
@@ -69,7 +75,7 @@ int main()
             break;
 
         case 3: // Realizar la unión de los dos conjuntos
-            if (conj1.Union(conj2, conj3))
+            if (Sumar(conj1, conj2, conj3))
                 cout << "Unión realizada con éxito." << endl;
             else
                 cout << "Error: No se pudo realizar la unión." << endl;
@@ -105,4 +111,37 @@ void mostrarMenu()
     cout << "3. Realizar la unión de los conjuntos 1 y 2" << endl;
     cout << "4. Imprimir los conjuntos" << endl;
     cout << "0. Salir" << endl;
+}
+
+bool Llenar(int arreglo[], int &tam)
+{
+
+    cout << "¿Cuántos elementos desea agregar?: ";
+    int cantidad = 0, dato;
+    cin >> cantidad;
+
+    if (tam + cantidad > maxCard)
+        return false;
+
+    for (int i = tam; i < cantidad; i++)
+    {
+        cout << "Teclea un valor: ";
+        cin >> arreglo[i];
+    }
+    return true;
+}
+
+bool print(int arreglo[], int tam)
+
+{
+    cout << "{ ";
+    if (!tam)
+        return false;
+    for (int i = 0; i < tam; i++)
+    {
+        cout << arreglo[i] << " ";
+    }
+    cout << " }" << endl; // Imprime los elementos entre llaves
+
+    return true;
 }
