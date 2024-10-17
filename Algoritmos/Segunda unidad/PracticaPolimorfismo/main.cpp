@@ -8,8 +8,8 @@ using namespace std;
 void mostrarMenu();
 
 bool print(int arreglo[], int tam);
-bool print(char arreglo[], int tam);
-bool Llenar(int arreglo[], int &tam);
+bool print(char *arreglo);
+bool Llenar(int arreglo[], int &tam); //
 bool Sumar(int *array1, int tam1, int *array2, int tam2, int *array3, int tam3);
 bool Sumar(char *array1, char *array2, char *array3);
 
@@ -123,10 +123,11 @@ bool Llenar(int arreglo[], int &tam)
     if (tam + cantidad > maxCard)
         return false;
 
-    for (int i = tam; i < cantidad; i++)
+    for (int i = 0; i < cantidad; i++)
     {
         cout << "Teclea un valor: ";
-        cin >> arreglo[i];
+        cin >> arreglo[tam++];
+        cout << "OK " << endl;
     }
     return true;
 }
@@ -144,4 +145,39 @@ bool print(int arreglo[], int tam)
     cout << " }" << endl; // Imprime los elementos entre llaves
 
     return true;
+}
+
+bool print(char *arreglo)
+{
+    if (!arreglo)
+        return false;
+
+    for (int i = 0; *(arreglo + i) != '\0'; i++)
+    {
+        cout << *(arreglo + i);
+    }
+    return true;
+}
+
+bool Sumar(int *array1, int tam1, int *array2, int tam2, int *array3, int tam3)
+{
+
+    if (tam1 + tam2 > maxCard)
+        return false;
+
+    tam3 = 0;
+    for (int i = 0; i < tam1; i++)
+    {
+        *(array3 + i) = array1[i];
+        tam3++;
+    }
+
+    for (int i = 0; i < tam2; i++)
+    {
+        array3[tam3] = *(array1 + i);
+        tam3++;
+    }
+
+    cout << "elementos del arreglo 3" << tam3 << endl;
+    return 0;
 }
