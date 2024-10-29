@@ -1,4 +1,4 @@
-// Practica de conjuntos
+// Practica de pilimorfismo
 // Isaac Avila Saenz (238925)
 // Ashley Paulina Dominguez Ruiz 225751
 #include "Conjunto.cpp"
@@ -9,11 +9,9 @@ void mostrarMenu();
 
 bool print(int arreglo[], int tam);
 bool print(char *arreglo);
-bool Llenar(int arreglo[], int &tam); //
-bool Sumar(int *array1, int tam1, int *array2, int tam2, int *array3, int tam3);
-bool Sumar(char *array1, char *array2, char *array3);
-
-int main()
+bool Llenar(int arreglo[], int &tam);                                            //
+bool Sumar(int *array1, int tam1, int *array2, int tam2, int *array3, int tam3); //
+char *Sumar(char *cad1, char *cad2)
 {
     Conjunto conj1, conj2, conj3; // Declaración de conjuntos
     unsigned short int cantidad;
@@ -150,16 +148,15 @@ bool print(int arreglo[], int tam)
 bool print(char *arreglo)
 {
     if (!arreglo)
-        return false;
+        return false; // Si el puntero vale nulo
 
     for (int i = 0; *(arreglo + i) != '\0'; i++)
-    {
         cout << *(arreglo + i);
-    }
+
     return true;
 }
 
-bool Sumar(int *array1, int tam1, int *array2, int tam2, int *array3, int tam3)
+bool Sumar(int *array1, int tam1, int *array2, int tam2, int *array3, int &tam3)
 {
 
     if (tam1 + tam2 > maxCard)
@@ -180,4 +177,20 @@ bool Sumar(int *array1, int tam1, int *array2, int tam2, int *array3, int tam3)
 
     cout << "elementos del arreglo 3" << tam3 << endl;
     return 0;
+}
+
+char *Sumar(char *cad1, char *cad2)
+{
+    int i;
+    for (i = 0; *(cad1 + i) != '\0'; i++)
+        ;
+    for (int j = 0; *(cad2 + j) != '\0'; j++)
+    {
+        if (i == maxCard)
+            return NULL;
+        *(cad1 + i) = *(cad2 + j);
+        i++;
+    }
+
+    return cad1;
 }
