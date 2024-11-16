@@ -28,6 +28,13 @@ int main()
         {
         case 1:
             // Operación de unión de conjuntos
+            cantidad = 0;
+            cantidad2 = 0;
+            cantidad3 = 0;
+            Conj1 = Conjunto();
+            Conj2 = Conjunto();
+            Conj3 = Conjunto();
+
             cout << "# de datos para Conj1: ";
             cin >> cantidad;
             for (unsigned int i = 0; i < cantidad; i++)
@@ -71,7 +78,12 @@ int main()
 
         case 2:
             // Suma de arreglos
+            cantidad = 0;
+            cantidad2 = 0;
+            cantidad3 = 0;
+
             int array1[maxCard], array2[maxCard], array3[maxCard];
+
             cout << "Captura de datos para el arreglo 1." << endl;
             if (Llenar(array1, cantidad))
             {
@@ -107,7 +119,10 @@ int main()
 
         case 3:
             // Suma de cadenas (concatenación)
+
             char cad1[maxCard], cad2[maxCard];
+            fill(begin(cad1), end(cad1), '\0');
+            fill(begin(cad2), end(cad2), '\0');
             cout << "Teclee la primera cadena: ";
             cin >> cad1;
             cout << "Teclee la segunda cadena: ";
@@ -143,7 +158,7 @@ bool Llenar(int *arreglo, unsigned int &tam)
 
     if (tam + elementos > maxCard)
         return false;
-
+    fill(arreglo, arreglo + maxCard, 0);
     for (int i = 0; i < elementos; i++)
     {
         cout << "Teclea un valor: ";
@@ -187,26 +202,17 @@ bool Sumar(int *array1, int tam1, int *array2, int tam2, int *array3, unsigned i
         return false;
 
     tam3 = 0;
+
+    // Agregar todos los elementos del primer arreglo
     for (int i = 0; i < tam1; i++)
     {
         array3[tam3++] = array1[i];
     }
 
+    // Agregar todos los elementos del segundo arreglo sin verificar duplicados
     for (int i = 0; i < tam2; i++)
     {
-        bool exists = false;
-        for (int j = 0; j < tam3; j++)
-        {
-            if (array2[i] == array3[j])
-            {
-                exists = true;
-                break;
-            }
-        }
-        if (!exists)
-        {
-            array3[tam3++] = array2[i];
-        }
+        array3[tam3++] = array2[i];
     }
 
     return true;

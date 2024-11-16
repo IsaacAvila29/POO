@@ -1,5 +1,5 @@
 #include "Conjunto.h"
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 inline bool Conjunto::Member(typeinfo dato)
